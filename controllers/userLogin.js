@@ -96,7 +96,7 @@ userLogin.post('/fetchData',async (req,res)=>{
     const thingSpeak=req.body;
     const thingSpeakChannelId=thingSpeak.thingSpeakChannelId;
     const thingSpeakApiKey=thingSpeak.thingSpeakApiKey;
-    const results=2;
+    const results=10;
     const response = await axios.get(
       `https://api.thingspeak.com/channels/${thingSpeakChannelId}/feeds.json?api_key=${thingSpeakApiKey}&results=${results}`,
       
