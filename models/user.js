@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  Token:{
+    required:false,
+    type:String,
+  }
 },{
   collection: 'Farmers' // Nom de la collection personnalisée
 });

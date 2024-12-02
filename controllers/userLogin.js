@@ -52,7 +52,7 @@ userLogin.post('/register',async (req, res) => {
 
 // Fonction pour la connexion
 userLogin.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, fcmToken } = req.body; // Récupère le token FCM du client
 
   try {
     // Vérifie si l'utilisateur existe
@@ -65,6 +65,12 @@ userLogin.post('/login', async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Mot de passe incorrect.' });
+    }
+
+    // Mette à jour le token FCM de l'utilisateur
+    if (fcmToken) {
+      user.Token = fcmToken; // Enregistre le token FCM
+      await user.save(); // Sauvegarde les modifications
     }
 
     // Génère un token JWT
@@ -82,7 +88,7 @@ userLogin.post('/login', async (req, res) => {
         name: user.name,
         email: user.email,
         thingSpeakChannelId: user.thingSpeakChannelId,
-        thingSpeakApiKey:user.thingSpeakApiKey
+        thingSpeakApiKey: user.thingSpeakApiKey,
       },
     });
   } catch (error) {
@@ -90,6 +96,7 @@ userLogin.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la connexion.' });
   }
 });
+
 
 userLogin.post('/fetchData',async (req,res)=>{
   try{
