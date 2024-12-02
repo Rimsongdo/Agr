@@ -82,6 +82,7 @@ userLogin.post('/login', async (req, res) => {
         name: user.name,
         email: user.email,
         thingSpeakChannelId: user.thingSpeakChannelId,
+        thingSpeakApiKey:user.thingSpeakApiKey
       },
     });
   } catch (error) {
