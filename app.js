@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const config = require('./utils/config');
 const cors = require('cors');
 const userServices=require('./controllers/userLogin')
+const admin = require('./firebase'); // Importer Firebase Admin
 
 
 const app = express();
@@ -12,7 +13,6 @@ mongoose.connect(config.MONGODB_URL)
   .then(() => console.log('Connecté à MongoDB'))
   .catch((error) => console.error('Erreur de connexion à MongoDB:', error));
 
-const admin = require('./firebase'); // Importer Firebase Admin
 
   // Fonction pour envoyer une notification
   const sendNotification = async (fcmToken, title, body) => {
