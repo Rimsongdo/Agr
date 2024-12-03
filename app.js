@@ -4,7 +4,6 @@ const config = require('./utils/config');
 const cors = require('cors');
 const userServices=require('./controllers/userLogin')
 const NotificationServices=require('./controllers/notification')
-const notif=require('./notif')
 const app = express();
 
 
