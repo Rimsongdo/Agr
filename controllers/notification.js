@@ -1,5 +1,5 @@
 const axios = require('axios'); 
-const admin = require('./firebase'); 
+const admin = require('../firebase'); 
 const express=require('express') // Pour hasher le mot de passe
 const sendNotifs = express.Router();
 
