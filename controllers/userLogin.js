@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken'); // Pour générer des tokens JWT
 const express=require('express') // Pour hasher le mot de passe
 const userLogin = express.Router();
 const tools = require('../utils/config');
+
 // Fonction pour créer un utilisateur
 const getTokenFrom = (request) => {
   const authorization = request.get('authorization');
@@ -13,6 +14,8 @@ const getTokenFrom = (request) => {
   }
   return null;
 };
+
+
 userLogin.post('/register',async (req, res) => {
   const { name, email, password} = req.body;
 
